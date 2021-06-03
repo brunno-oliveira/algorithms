@@ -1,7 +1,5 @@
 from src import Train
+from src import Chatbot
 
 Train().run()
-
-# from src import Chatbot
-
-# Chatbot().run()
+Chatbot().run()

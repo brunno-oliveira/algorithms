@@ -20,6 +20,7 @@ os.environ["TF_XLA_FLAGS"] = "--tf_xla_enable_xla_devices"
 
 class Train:
     def __init__(self) -> None:
+        print("------- INIT TRAINING -------")
         current_dir = os.path.join(
             os.getcwd(), os.path.dirname(os.path.dirname(__file__))
         )
@@ -104,10 +105,10 @@ class Train:
         y_train = list(training[:, 1])
         model = self.build_model(x_train, y_train)
         print("Fitting the model")
-        model.fit(
+        hist = model.fit(
             np.array(x_train), np.array(y_train), epochs=200, batch_size=5, verbose=1
         )
-        model_path = os.path.join(self.data_dir, "chat_bot.model")
+        model_path = os.path.join(self.data_dir, "chat_bot.h5")
         print(f"Saving model on {model_path}")
-        model.save(model_path)
+        model.save(model_path, hist)
         print("Done!")
